@@ -1,9 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+//import ArticleList from '../components'
+import styles from '../styles/Layout.module.css'
+import homeStyles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({articles}) {
   return (
+    // <div>
+    //   <Head>
+    //     <title>Seth Frank</title>
+    //   </Head>
+    //   <h1>Hello! My name is Seth Frank</h1>
+
+    //   <ArticleList articles={articles} />
+    // </div>
+
+
+
+
     <div className={styles.container}>
       <Head>
         <title>Seth Frank</title>
@@ -16,43 +29,47 @@ export default function Home() {
           Hello! I'm Seth Frank
         </h1>
 
-        <p className={styles.description}>
-          I am currently a student at Worcester Polytechnic Institute studying computer science.
-          {/* <code className={styles.code}>pages/index.js</code> */}
-        </p>
+        <div className={homeStyles.homePicGrid}>
+          <div className={homeStyles.homePic}>
+            <p className={styles.description}>I am currently a first-year student at Worcester Polytechnic Institute pursuing a Bachelor's degree in Computer Science. Check out more about my work and passions.</p>
+          </div>
+          <div className={homeStyles.homePic}>
+            <img src="seth.jpg"></img>
+          </div>          
+        </div>
+
+        <div class={homeStyles.hl} />
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a href="/about" className={styles.card}>
+            <h2>About &rarr;</h2>
+            <p>Learn more about interests and passions.</p>
+          </a>
+
+          <a href="/resume" className={styles.card}>
             <h2>Resume &rarr;</h2>
-            <p>Download a copy of my resume.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn more about my interests and hobbies.</p>
+            <p>View and download my resume.</p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
+            href="/academics"
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+            <h2>Academics &rarr;</h2>
+            <p>Learn more about my studies at Worcester Polytechnic Institute.</p>
           </a>
 
           <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            href="/contact"
             className={styles.card}
           >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            <h2>Contact &rarr;</h2>
+            <p>Reach out to me for further inquiries.</p>
           </a>
         </div>
       </main>
 
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
@@ -63,7 +80,18 @@ export default function Home() {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
-      </footer>
+      </footer> */}
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`)
+  const articles = await res.json()
+
+  return {
+    props: {
+      articles
+    }
+  }
 }

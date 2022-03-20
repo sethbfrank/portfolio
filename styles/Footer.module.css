@@ -1,0 +1,38 @@
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background: #f1f1f2;
+  width: 100%;
+}
+  
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+
+.footerGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* max-width: 800px; */
+}
+
+.footerCard {
+  margin: 10px;
+  padding: 1rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  /* border-radius: 10px; */
+  /* transition: color 0.15s ease, border-color 0.15s ease; */
+  max-width: 300px;
+}
